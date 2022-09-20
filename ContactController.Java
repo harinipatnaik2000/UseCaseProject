@@ -17,15 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContactController {
     @Autowired
 	ContactService contactService;
-
+	
+	@GetMapping("/contact/retrieve/{id}")
+    public ResponseEntity<Person> retrieve(@PathVariable Integer id){
+        Person person = contactService.retrieve(id);
+        return new ResponseEntity(person, HttpStatus.OK);
+    }
+	
     @PostMapping("/contact/save")
     public ResponseEntity<Person> save(@RequestBody Person person){
         Person saved = contactService.save(person);
         return new ResponseEntity(saved, HttpStatus.CREATED);
     }
-    @GetMapping("/contact/retrieve/{id}")
-    public ResponseEntity<Person> retrieve(@PathVariable Integer id){
-        Person person = contactService.retrieve(id);
-        return new ResponseEntity(person, HttpStatus.OK);
-    }
+    
+    
 }
