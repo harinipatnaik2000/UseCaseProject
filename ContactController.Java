@@ -29,6 +29,11 @@ public class ContactController {
         Person saved = contactService.save(person);
         return new ResponseEntity(saved, HttpStatus.CREATED);
     }
-    
-    
+	
+    @PutMapping("/contact/update/{id}")
+    public ResponseEntity<Person> update(@RequestBody Person person, @PathVariable ("id") int id){
+	    Person updated= contactService.update(person, id);
+	    return new ResponseEntity(updated, HttpStatus.CREATED);
+	    
+	    
 }
