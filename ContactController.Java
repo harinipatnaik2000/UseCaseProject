@@ -32,7 +32,7 @@ public class ContactController {
 	
     @PutMapping("/contact/update/{id}")
     public ResponseEntity<Person> update(@RequestBody Person person, @PathVariable ("id") int id){
-	    Person updated= contactService.update(person, id);
+	    Person updated= contactService.save(person, id);
 	    return new ResponseEntity(updated, HttpStatus.CREATED);
 	    
 	    
